@@ -10,7 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYPCanteenSystem">
         <activity
-            android:name=".UserProfilePage"
+            android:name=".CustomerProfile"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSetting"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerWishlist"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerOrder"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerCart"
             android:exported="false" />
         <activity
             android:name=".FoodOrderingModule"

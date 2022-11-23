@@ -23,9 +23,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_account_circle_24"
-            tools:ignore="SpeakableTextPresentCheck"
-            tools:srcCompat="@drawable/baseline_account_circle_24" />
+            android:src="@drawable/icon_user_profile"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/iBtnCart"
@@ -34,7 +33,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_shopping_cart_24"
+            app:srcCompat="@drawable/icon_mycart"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -44,7 +43,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_shopping_bag_24"
+            app:srcCompat="@drawable/icon_myorder"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -54,7 +53,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_favorite_24"
+            app:srcCompat="@drawable/icon_wishlist"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -65,7 +64,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_settings_24"
+            app:srcCompat="@drawable/icon_setting"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
@@ -73,7 +72,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="120dp"
         android:background="#CDC8C8"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,14 +83,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/ad_demo1" />
+
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listVendorShop"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentCustomerHomepage"
+        android:name="com.example.fypcanteensystem.VendorListFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="447dp"
+        android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
