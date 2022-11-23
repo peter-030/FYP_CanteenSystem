@@ -28,7 +28,22 @@
             android:name=".FoodOrderingModule"
             android:exported="false" />
         <activity
+            android:name=".VendorProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorForgetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

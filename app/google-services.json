@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "73370266148",
+    "firebase_url": "https://fyp-canteensystem-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "fyp-canteensystem",
+    "storage_bucket": "fyp-canteensystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73370266148:android:4b4ec9ca1bdd4f797306b1",
+        "android_client_info": {
+          "package_name": "com.example.fypcanteensystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73370266148-3a617mcomiqd1nq7h6hahp8cvtje5mm8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPVg8S1IU36qnQ37AEkIafmpZ7cw8in2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73370266148-3a617mcomiqd1nq7h6hahp8cvtje5mm8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">FYP.Canteen System</string>
+    <string name="email">Email</string>
+    <string name="required">Required</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number(+60)</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="rental_code_canteen_vendor">Rental Code (Canteen Vendor)</string>
+    <string name="merchant_name">Merchant Name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
