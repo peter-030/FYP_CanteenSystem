@@ -10,22 +10,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYPCanteenSystem">
         <activity
-            android:name=".CustomerProfile"
+            android:name=".CustomerMenuDisplayActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerSetting"
+            android:name=".CustomerForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerWishlist"
+            android:name=".CustomerRegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerOrder"
+            android:name=".FoodOrderingModuleActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerCart"
+            android:name=".CustomerProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".FoodOrderingModule"
+            android:name=".CustomerSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerWishlistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorLoginActivity"
             android:exported="false" />
         <activity
             android:name=".VendorProfileActivity"
@@ -43,7 +55,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".VendorLoginActivity"
+            android:name=".CustomerLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

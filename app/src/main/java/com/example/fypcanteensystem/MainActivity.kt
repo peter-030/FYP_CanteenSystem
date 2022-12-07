@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this, FoodOrderingModule::class.java)
+        val intent = Intent(this, FoodOrderingModuleActivity::class.java)
         startActivity(intent)
     }
 }

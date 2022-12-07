@@ -110,12 +110,12 @@
                                 android:textColor="#000"
                                 android:layout_below="@+id/profile">
                             </TextView>
+
                             <Button
+                                android:id="@+id/btnprofile"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnprofile"
-                                android:background="@android:color/transparent"
-                                ></Button>
+                                android:background="@android:color/transparent"></Button>
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -195,12 +195,12 @@
                                 android:textColor="#000"
                                 android:layout_below="@+id/menu">
                             </TextView>
+
                             <Button
+                                android:id="@+id/btnMenu"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnMenu"
-                                android:background="@android:color/transparent"
-                                ></Button>
+                                android:background="@android:color/transparent"></Button>
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -234,12 +234,12 @@
                                 android:textColor="#000"
                                 android:layout_below="@+id/promoCode">
                             </TextView>
+
                             <Button
+                                android:id="@+id/btnpromoCode"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:id="@+id/btnpromoCode"
-                                android:background="@android:color/transparent"
-                                ></Button>
+                                android:background="@android:color/transparent"></Button>
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>

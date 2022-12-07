@@ -4,81 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerProfileActivity">
+    tools:context=".CustomerRegistrationActivity">
 
     <TextView android:id="@+id/titleTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Profile"
-        android:textSize="24sp"
+        android:text="Let's Get Started. \nJoin us now."
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="#000000"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         />
-
-    <ImageView
-        android:id="@+id/userPicIcon"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTv"
-        app:srcCompat="@drawable/profile1" />
-
-    <ImageButton
-        android:id="@+id/btnSelectUserImg"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="116dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTv"
-        app:srcCompat="@drawable/cameraicon" />
-
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:layout_marginTop="8dp"
-        android:text="Logout"
-        android:backgroundTint="#D3D3D3"
-        android:textColor="@android:color/holo_red_light"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTv" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_marginHorizontal="20dp"
-        app:helperText=""
-        app:helperTextTextColor="@android:color/holo_red_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:hint="@string/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPicIcon">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:lines="1"
-            android:inputType="textEmailAddress"
-            android:text=""/>
-    </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullNameContainer"
@@ -89,10 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="@string/full_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailContainer">
+        app:layout_constraintTop_toBottomOf="@+id/titleTv">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/fullNameEditText"
@@ -100,7 +38,59 @@
             android:layout_height="match_parent"
             android:lines="1"
             android:inputType="textPersonName"
-            android:text=""/>
+            android:hint="@string/full_name"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_marginHorizontal="20dp"
+        app:helperText=""
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lines="1"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordContainer"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_marginHorizontal="20dp"
+        app:helperText=""
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailContainer">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lines="1"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:hint="@string/password"/>
+
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -111,13 +101,12 @@
         app:helperTextTextColor="@android:color/holo_red_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        app:counterEnabled="true"
         app:counterMaxLength="11"
         android:layout_marginTop="15dp"
-        android:hint="@string/phone_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameContainer">
+        app:layout_constraintTop_toBottomOf="@+id/passwordContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phoneEditText"
@@ -125,44 +114,44 @@
             android:layout_height="match_parent"
             android:lines="1"
             android:inputType="number"
-            android:text=""/>
+            android:hint="@string/phone_number"/>
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/studentIdContainer"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:hint="Student Id (eg. 20WMR05253)"
-        app:counterMaxLength="5"
         app:helperText=""
         app:helperTextTextColor="@android:color/holo_red_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterMaxLength="5"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneContainer"
-        tools:layout_editor_absoluteY="488dp">
+        app:layout_constraintTop_toBottomOf="@+id/phoneContainer">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/studentIdEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="number"
-            android:lines="1"
-            android:text="" />
+            android:hint="Student Id (eg. 20WMR05253)"
+            android:inputType="text"
+            android:lines="1" />
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button android:id="@+id/btnUpdate"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/custSignUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="@string/sign_up"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textAllCaps="false"
-        android:text="Update"
-        android:textStyle="bold"
-        android:layout_margin="3dp"
-        app:layout_constraintTop_toBottomOf="@+id/studentIdContainer"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentIdContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgCartFoodPopup"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/no_image_available" />
+
+            <TextView
+                android:id="@+id/tvCartFoodNamePopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:text='"name"'
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/imgCartFoodPopup"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCartFoodPricePopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="RM 00.00"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCartFoodPopup"
+                app:layout_constraintStart_toEndOf="@+id/imgCartFoodPopup" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvBtnCartPlusPopup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCartFoodPopup"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgBtnCartPlusPopup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/plus_button" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvCartFoodQtyPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="00"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/cvBtnCartPlusPopup"
+                app:layout_constraintEnd_toStartOf="@+id/cvBtnCartPlusPopup"
+                app:layout_constraintTop_toTopOf="@+id/cvBtnCartPlusPopup" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvBtnCartMinusPopup"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCartFoodQtyPopup"
+                app:layout_constraintEnd_toStartOf="@+id/tvCartFoodQtyPopup"
+                app:layout_constraintTop_toTopOf="@+id/tvCartFoodQtyPopup">
+
+                <ImageView
+                    android:id="@+id/imgBtnCartMinusPopup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/minus_button" />
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnCartEditCancelPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="16dp"
+                android:text="Cancel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCartFoodPopup" />
+
+            <Button
+                android:id="@+id/btnCartEditConfirmPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="80dp"
+                android:text="Confirm"
+                app:layout_constraintBottom_toBottomOf="@+id/btnCartEditCancelPopup"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnCartEditCancelPopup" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
