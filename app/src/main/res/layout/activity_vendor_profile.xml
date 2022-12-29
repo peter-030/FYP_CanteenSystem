@@ -32,27 +32,28 @@
         android:id="@+id/btnSelectUserImg"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="-16dp"
-        android:layout_marginBottom="-16dp"
+        android:layout_marginTop="116dp"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@+id/userPicIcon"
-        app:layout_constraintEnd_toEndOf="@+id/userPicIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.690"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv"
         app:srcCompat="@drawable/cameraicon" />
 
     <Button
         android:id="@+id/btnLogOut"
-        android:layout_width="84dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#D3D3D3"
+
         android:text="Logout"
-        android:textAllCaps="false"
+        android:backgroundTint="#D3D3D3"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="12sp"
+        android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/userPicIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTv" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -63,8 +64,10 @@
         app:helperTextTextColor="@android:color/holo_red_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:hint="@string/email"
+        android:layout_marginTop="1dp"
+        android:hint="Email"
+        android:textColorHint="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userPicIcon">
@@ -73,9 +76,12 @@
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:inputType="none"
+            android:enabled="false"
             android:lines="1"
-            android:inputType="textEmailAddress"
-            android:text=""/>
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -162,6 +168,8 @@
         android:layout_height="wrap_content"
         app:counterMaxLength="5"
         android:layout_marginTop="15dp"
+        android:textColorHint="@color/black"
+        android:textStyle="bold"
         android:hint="@string/rental_code_canteen_vendor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,7 +180,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:lines="1"
-            android:inputType="number"
+            android:inputType="none"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:text=""/>
 
     </com.google.android.material.textfield.TextInputLayout>

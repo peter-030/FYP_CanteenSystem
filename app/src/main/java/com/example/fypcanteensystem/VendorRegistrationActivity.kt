@@ -80,6 +80,10 @@ class VendorRegistrationActivity : AppCompatActivity() {
                 binding.rentalCodeContainer.setError("*Required!")
                 return@setOnClickListener
             }
+            else if(!binding.rentalCodeEditText.text.toString().matches("^(East|West)-[0-9]{4}\$".toRegex())){
+                binding.rentalCodeContainer.setError("*Invalid Rental Code format!")
+                return@setOnClickListener
+            }
             else{
                 binding.rentalCodeContainer.error = null
             }
@@ -105,7 +109,14 @@ class VendorRegistrationActivity : AppCompatActivity() {
         this.setTitle("Vendor Sign Up")
 
 
+        val actionbar = supportActionBar
+        //actionbar!!.title = "My Cart"
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun registerVendor(email: String, psw: String, name: String, phoneNo:String, merchantName: String, code: String) {
@@ -119,7 +130,7 @@ class VendorRegistrationActivity : AppCompatActivity() {
                     currentUserDb?.child("Phone Number")?.setValue(phoneNo)
                     currentUserDb?.child("Merchant Name")?.setValue(merchantName)
                     currentUserDb?.child("Rental Code")?.setValue(code)
-
+                    currentUserDb?.child("E-wallet Balance")?.setValue("1000")
                     Toast.makeText(this@VendorRegistrationActivity, "Registration Successful", Toast.LENGTH_LONG).show()
                     finish()
                 }

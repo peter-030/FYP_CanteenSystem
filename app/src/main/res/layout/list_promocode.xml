@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="5dp"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="179dp"
+        android:scaleType="fitXY"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/voucher2" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:padding="4dp"
+            android:translationX="37dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Promo Code :"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginLeft="3dp"-->
+<!--                    android:textSize="17sp"-->
+<!--                    android:textColor="@android:color/black">-->
+
+<!--                </TextView>-->
+
+                <TextView
+                    android:id="@+id/codeName"
+                    android:layout_width="274dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discount    : RM"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/codeDiscountPrice"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp"
+                    android:layout_margin="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Min Spend : RM"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/codeMinSpend"
+                    android:text=""
+                    android:textSize="17sp"
+                    android:layout_margin="3dp"
+                    android:textColor="@android:color/black"
+                    android:background="@android:drawable/editbox_background"
+                    android:backgroundTint="@color/white"
+                    android:paddingLeft="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="-25dp">
+                <TextView
+                    android:id="@+id/codeStatus"
+                    android:layout_width="95dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:drawable/editbox_background"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:text="ss"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="17sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-3dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity    :"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/codeQuantity"
+                    android:text=""
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black"
+                    android:layout_margin="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Valid Date :"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/codeValidDate"
+                    android:text=""
+                    android:textSize="12sp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@android:color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/mMenusCode"
+            android:src="@drawable/ic_more"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

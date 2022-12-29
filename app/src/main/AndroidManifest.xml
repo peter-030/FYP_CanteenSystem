@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fypcanteensystem">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +13,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FYPCanteenSystem">
+        <activity
+            android:name=".VendorStockReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorSalesReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorEwalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorReceiveOrderDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorOrderReceiveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorPromoCodeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorMenuActivity"
+            android:exported="false" />
         <activity
             android:name=".CustomerPaymentActivity"
             android:exported="false" />
@@ -40,7 +68,7 @@
             android:name=".CustomerCartActivity"
             android:exported="false" />
         <activity
-            android:name=".VendorLoginActivity"
+            android:name=".CustomerLoginActivity"
             android:exported="false" />
         <activity
             android:name=".VendorProfileActivity"
@@ -58,7 +86,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerLoginActivity"
+            android:name=".VendorLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

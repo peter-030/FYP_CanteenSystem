@@ -10,7 +10,7 @@
     <TextView android:id="@+id/titleTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Let's Get Started. \nCreate your own digital merchant now!"
+        android:text="Let's Get Started. \nCreate your own digital merchant now!\n* you will get a RM1000 E-wallet Balance"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,8 +139,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:lines="1"
-            android:inputType="number"
-            android:hint="@string/rental_code_canteen_vendor"/>
+            android:inputType="textPersonName"
+            android:hint="Rental Code (West/East-XXXX)"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
