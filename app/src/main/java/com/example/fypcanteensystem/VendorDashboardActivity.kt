@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.concurrent.Executors
 import android.util.Log
+
+
 class VendorDashboardActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityVendorDashboardBinding
@@ -34,7 +36,28 @@ class VendorDashboardActivity : AppCompatActivity() {
 
         binding.btnprofile.setOnClickListener(){
             startActivity(Intent(this@VendorDashboardActivity,VendorProfileActivity::class.java))
-            finish()
+            //finish()
+        }
+        binding.btnMenu.setOnClickListener(){
+            startActivity(Intent(this@VendorDashboardActivity,VendorMenuActivity::class.java))
+            //finish()
+        }
+        binding.btnpromoCode.setOnClickListener(){
+            startActivity(Intent(this@VendorDashboardActivity,VendorPromoCodeActivity::class.java))
+            //finish()
+        }
+
+        binding.btnOrder.setOnClickListener(){
+            startActivity(Intent(this@VendorDashboardActivity,VendorOrderReceiveActivity::class.java))
+            //finish()
+        }
+        binding.btnWallet.setOnClickListener(){
+            startActivity(Intent(this@VendorDashboardActivity,VendorEwalletActivity::class.java))
+            //finish()
+        }
+        binding.btnReport.setOnClickListener(){
+            startActivity(Intent(this@VendorDashboardActivity,VendorReportActivity::class.java))
+            //finish()
         }
     }
 
@@ -73,7 +96,7 @@ class VendorDashboardActivity : AppCompatActivity() {
 
             override fun onCancelled(error: DatabaseError) {
                 Log.i("aaaaaaaa", error.message)
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
         })
     }

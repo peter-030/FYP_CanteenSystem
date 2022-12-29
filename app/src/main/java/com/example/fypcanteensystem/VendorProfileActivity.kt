@@ -9,11 +9,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.fypcanteensystem.databinding.ActivityVendorProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.Executors
@@ -80,8 +83,49 @@ class VendorProfileActivity : AppCompatActivity() {
                 ,binding.merchantNameEditText.text.toString())
         }
 
+        //log out user
+        binding.btnLogOut.setOnClickListener(){
+            signOut()
+        }
+
+        val actionbar = supportActionBar
+        //actionbar!!.title = "My Cart"
+        actionbar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    private fun signOut(){
+
+        AlertDialog.Builder(this)
+            .setTitle("Sign Out")
+            .setMessage("Do you really want to Sign Out?")
+            .setPositiveButton("Yes"){
+                    dialog,_->
+
+                //FirebaseAuth.getInstance().signOut()
+                //databaseReference.removeEventListener()
+                auth.signOut()
+                val intent = Intent(this@VendorProfileActivity,VendorLoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                //startActivity(Intent(this@VendorProfileActivity,VendorLoginActivity::class.java))
+                finish()
+                Toast.makeText(this,"You are successfully Sign Out",Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+
+            }
+            .setNegativeButton("No"){
+                    dialog,_->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+
+    }
 
 
     private fun selectUserImg() {
@@ -164,9 +208,9 @@ class VendorProfileActivity : AppCompatActivity() {
                     }
                 }
 
-                if(user==null){
-                    userReference?.removeEventListener(this)
-                }
+//                if(user==null){
+//                    userReference?.removeEventListener(this)
+//                }
 
                 //load user email,username,phoneNumber
                 binding.emailEditText.setText(user?.email)
@@ -177,14 +221,10 @@ class VendorProfileActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
         })
 
-        binding.btnLogOut.setOnClickListener(){
-            auth.signOut()
-            startActivity(Intent(this@VendorProfileActivity,VendorLoginActivity::class.java))
-            finish()
-        }
+
     }
 }

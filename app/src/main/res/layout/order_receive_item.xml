@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:cardMaxElevation="5dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/img_cusPic"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:scaleType="fitXY"></ImageView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="7.5"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_orderNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="order123"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="16dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_paymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment Method: Pay at Counter"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="16dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_dateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order Date: 12/12/2022 12:22:22"
+                android:textColor="@android:color/black"
+                android:textStyle="italic"
+                android:textSize="16dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_cusName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name: JunXian"
+                android:textColor="@android:color/black"
+                android:textStyle="italic"
+                android:textSize="16dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_orderStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Order Status: Placed"
+                android:textColor="@android:color/black"
+                android:textStyle="italic"
+                android:textSize="16dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/txt_noOfItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Num of Items: 2"
+                android:textColor="@android:color/black"
+                android:textStyle="italic"
+                android:textSize="16dp">
+            </TextView>
+
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/orderMenus"
+            android:src="@drawable/ic_more"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

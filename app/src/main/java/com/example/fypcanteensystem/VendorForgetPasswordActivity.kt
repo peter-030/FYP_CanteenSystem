@@ -20,6 +20,15 @@ class VendorForgetPasswordActivity : AppCompatActivity() {
         binding.btnSubmitForgotPassword.setOnClickListener(){
             resetUserPassword()
         }
+
+        val actionbar = supportActionBar
+        //actionbar!!.title = "My Cart"
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun resetUserPassword() {

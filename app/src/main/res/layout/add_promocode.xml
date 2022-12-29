@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Add new Promo Code"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:textColor="@color/white"
+            android:background="@color/purple_500"
+            android:padding="10dp"
+            android:elevation="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/codeNameCon"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:hint="Promo Code">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/codeName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp"
+
+                android:padding="15dp"
+                android:lines="1"
+                android:inputType="textCapCharacters"
+                android:text=""/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/codeDiscountPriceCon"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:hint="Discount Price (RM)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/codeDiscountPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp"
+
+                android:padding="15dp"
+                android:lines="1"
+                android:inputType="numberDecimal"
+                android:text=""/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/codeMinSpendCon"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:hint="Min Spending (RM)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/codeMinSpend"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp"
+
+                android:padding="15dp"
+                android:lines="1"
+                android:inputType="numberDecimal"
+                android:text=""/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/codeQuantityCon"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:helperText=""
+            app:helperTextTextColor="@android:color/holo_red_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="15dp"
+            android:paddingLeft="17dp"
+            android:paddingRight="17dp"
+            android:hint="Quantity">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/codeQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp"
+
+                android:padding="15dp"
+                android:lines="1"
+                android:inputType="number"
+                android:text=""/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textColor="@color/purple_500"
+            android:background="@drawable/shape_background"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:id="@+id/dateHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valid Date:"
+                android:textColor="@color/black"
+                />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="50dp"
+                    android:text=""
+                    android:background="#D3D3D3"
+                    android:layout_marginTop="-8dp"
+                    android:padding="2dp">
+
+                </TextView>
+                <Button
+                    android:id="@+id/btnStartTime"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-110dp"
+                    android:text="Start Time"
+                    android:textColor="@color/black"
+                    style="?android:spinnerStyle"
+                    android:padding="2dp"
+                    android:textSize="14sp">
+
+
+                </Button>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="till"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="-8dp"
+                    android:layout_marginRight="3dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:text=""
+                    android:background="#D3D3D3"
+                    android:layout_marginTop="-8dp"
+                    android:padding="2dp">
+
+                </TextView>
+
+                <Button
+
+                    android:id="@+id/btnEndTime"
+                    android:layout_width="136dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="-145dp"
+                    android:text="End Time"
+                    android:textColor="@color/black"
+                    style="?android:spinnerStyle"
+                    android:textSize="14sp">
+
+
+                </Button>
+
+            </RadioGroup>
+
+        </RadioGroup>
+
+
+        <RadioGroup
+
+            android:orientation="horizontal"
+            android:id="@+id/codeStatus"
+            android:textColor="@color/purple_500"
+            android:background="@drawable/shape_background"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Status:"
+                android:textColor="@color/black"
+                />
+            <RadioButton
+                android:id="@+id/codeShelf"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="shelf">
+
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/codeUnshelve"
+                android:layout_width="99dp"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="unshelve">
+
+            </RadioButton>
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</LinearLayout>
