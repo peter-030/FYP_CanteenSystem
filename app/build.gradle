@@ -33,6 +33,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+
 }
 
 dependencies {
@@ -54,4 +56,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
+    //piechart
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 }
+
+
+

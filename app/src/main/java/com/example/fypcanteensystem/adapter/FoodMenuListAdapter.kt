@@ -21,7 +21,7 @@ class FoodMenuListAdapter(private val foodMenuList : ArrayList<FoodMenuListData>
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentFood = foodMenuList[position]
-        holder.foodName.text = currentFood.foodName
+        holder.orderId.text = currentFood.foodName
         holder.foodPrice.text = "RM " + currentFood.foodPrice
         holder.foodDesp.text = currentFood.foodDescription
 
@@ -38,7 +38,7 @@ class FoodMenuListAdapter(private val foodMenuList : ArrayList<FoodMenuListData>
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        val foodName: TextView = itemView.findViewById(R.id.tvFoodNameMenu)
+        val orderId: TextView = itemView.findViewById(R.id.tvFoodNameMenu)
         val foodPrice: TextView = itemView.findViewById(R.id.tvFoodPriceMenu)
         val foodDesp: TextView = itemView.findViewById(R.id.tvFoodDespMenu)
         val foodImage: ImageView = itemView.findViewById(R.id.imgFoodMenu)

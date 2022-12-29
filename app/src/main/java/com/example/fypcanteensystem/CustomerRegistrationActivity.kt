@@ -26,6 +26,10 @@ class CustomerRegistrationActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("customerProfile")
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Registration"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
         binding.custSignUpButton.setOnClickListener()
         {
 
@@ -86,9 +90,13 @@ class CustomerRegistrationActivity : AppCompatActivity() {
             )
 
         }
-        this.setTitle("User Sign Up")
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun registerCust(
@@ -106,6 +114,8 @@ class CustomerRegistrationActivity : AppCompatActivity() {
                     currentUserDb?.child("Full Name")?.setValue(name)
                     currentUserDb?.child("Phone Number")?.setValue(phoneNo)
                     currentUserDb?.child("Student Id")?.setValue(studentId)
+                    currentUserDb?.child("E-wallet Balance")?.setValue("0")
+
 
                     Toast.makeText(
                         this@CustomerRegistrationActivity,

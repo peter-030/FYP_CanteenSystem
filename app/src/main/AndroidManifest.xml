@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYPCanteenSystem">
         <activity
+            android:name=".CustomerPaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".CustomerMenuDisplayActivity"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".CustomerProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerSettingActivity"
+            android:name=".CustomerReportActivity"
             android:exported="false" />
         <activity
             android:name=".CustomerWishlistActivity"

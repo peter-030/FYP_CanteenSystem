@@ -6,15 +6,11 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvCartFood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:cardMaxElevation="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,53 +19,50 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imgFoodMenu"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/imgOrderFood"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:padding="4dp"
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/no_image_available" />
 
             <TextView
-                android:id="@+id/tvFoodNameMenu"
-                android:layout_width="0dp"
+                android:id="@+id/tvOrderFoodName"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:text='"Food name"'
+                android:text='"Cart Food Name"'
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgFoodMenu"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/imgOrderFood"
+                app:layout_constraintTop_toTopOf="@+id/imgOrderFood" />
 
             <TextView
-                android:id="@+id/tvFoodPriceMenu"
-                android:layout_width="0dp"
+                android:id="@+id/tvOrderFoodPrice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:text='"Food Price"'
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgFoodMenu"
-                app:layout_constraintTop_toBottomOf="@+id/tvFoodNameMenu" />
+                android:layout_marginBottom="4dp"
+                android:text='"Cart Food Price"'
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgOrderFood"
+                app:layout_constraintStart_toEndOf="@+id/imgOrderFood" />
 
             <TextView
-                android:id="@+id/tvFoodDespMenu"
-                android:layout_width="0dp"
+                android:id="@+id/tvOrderFoodQty"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:text='"Food Desp"'
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgFoodMenu"
-                app:layout_constraintTop_toBottomOf="@+id/tvFoodPriceMenu" />
+                android:layout_marginBottom="8dp"
+                android:text="0"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvOrderFoodPrice"
+                app:layout_constraintStart_toStartOf="@+id/tvOrderFoodPrice" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -195,15 +195,15 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:backgroundTint="@color/cardview_shadow_end_color"
-                    app:srcCompat="@drawable/icon_setting"
+                    app:srcCompat="@drawable/icon_report"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <TextView
-                    android:id="@+id/tvSetting"
+                    android:id="@+id/tvReport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Setting"
+                    android:text="Report"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="10sp"

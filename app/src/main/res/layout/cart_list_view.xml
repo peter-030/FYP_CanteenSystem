@@ -9,6 +9,8 @@
         android:id="@+id/cvCartFood"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -16,29 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <CheckBox
-                android:id="@+id/cbCartFood"
-                android:layout_width="35dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck" />
-
             <ImageView
                 android:id="@+id/imgCartFood"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:padding="4dp"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toEndOf="@+id/cbCartFood"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/no_image_available" />
 
             <TextView
-                android:id="@+id/tvCartFoodName"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvOrderFoodName"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -70,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="@+id/tvCartFoodPrice" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imgEditFoodQty"
                 android:layout_width="30dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"

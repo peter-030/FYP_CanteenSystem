@@ -18,9 +18,16 @@ class CustomerLoginActivity : AppCompatActivity() {
         binding = ActivityCustomerLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        this.setTitle("Customer Login")
+        val actionbar = supportActionBar
+        actionbar!!.title = "User Login"
+        actionbar.setDisplayHomeAsUpEnabled(true)
 
         auth = FirebaseAuth.getInstance()
+
+        if(auth.currentUser!=null){
+            startActivity(Intent(this,FoodOrderingModuleActivity::class.java))
+            finish()
+        }
 
         binding.btnLogin.setOnClickListener()
         {
@@ -56,6 +63,11 @@ class CustomerLoginActivity : AppCompatActivity() {
         binding.btnSwitchToVendor.setOnClickListener(){
             startActivity(Intent(this@CustomerLoginActivity,VendorLoginActivity::class.java))
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun loginUser(email: String, psw: String) {

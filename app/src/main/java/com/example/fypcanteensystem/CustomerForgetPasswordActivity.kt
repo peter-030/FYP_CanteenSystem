@@ -15,12 +15,20 @@ class CustomerForgetPasswordActivity : AppCompatActivity() {
         binding = ActivityCustomerForgetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        this.setTitle("User Forget Password")
+        val actionbar = supportActionBar
+        actionbar!!.title = "User Forget Password"
+        actionbar.setDisplayHomeAsUpEnabled(true)
 
         binding.btnSubmitForgotPassword.setOnClickListener(){
             resetUserPassword()
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun resetUserPassword() {
         val email: String = binding.emailEditText.text.toString().trim{ it <= ' '}
         if(email.isEmpty()){

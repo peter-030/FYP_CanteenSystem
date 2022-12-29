@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerWishlistActivity">
+    android:background="#DDDDDD"
+    tools:context=".CustomerReportActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvWishlistVendor"
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D6D6D6"
-        android:padding="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/vendors_list_view" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

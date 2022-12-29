@@ -4,23 +4,19 @@ package com.example.fypcanteensystem
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fypcanteensystem.adapter.FoodMenuListAdapter
-import com.example.fypcanteensystem.adapter.VendorsListAdapter
 import com.example.fypcanteensystem.dataModels.CartFoodListData
 import com.example.fypcanteensystem.dataModels.FoodMenuListData
-import com.example.fypcanteensystem.dataModels.VendorsListData
+import com.example.fypcanteensystem.dataModels.VendorIdData
 import com.example.fypcanteensystem.databinding.ActivityCustomerMenuDisplayBinding
 import com.example.fypcanteensystem.databinding.AddToCartPopupBinding
-import com.example.fypcanteensystem.databinding.CartEditPopupBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.concurrent.Executors
@@ -31,28 +27,47 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
     private lateinit var binding: ActivityCustomerMenuDisplayBinding
     private lateinit var bindingAddToCart: AddToCartPopupBinding
     private lateinit var auth: FirebaseAuth
-    private var databaseReference : DatabaseReference? =null
-    private var databaseFoodReference : DatabaseReference? =null
-    private var databaseCustReference : DatabaseReference? =null
-    private var database : FirebaseDatabase? =null
+    private lateinit var databaseReference : DatabaseReference
+    private lateinit var databaseFoodReference : DatabaseReference
+    private lateinit var databaseCustReference : DatabaseReference
+    private lateinit var cartOrderReference: DatabaseReference
+    private lateinit var foodReference: DatabaseReference
+    private lateinit var cartReference: DatabaseReference
+    private lateinit var vendorReference: DatabaseReference
+    private lateinit var wishlistReference: DatabaseReference
+    private lateinit var wishlistPushReference: DatabaseReference
+
+    private lateinit var database : FirebaseDatabase
     private lateinit var foodMenuListArray: ArrayList<FoodMenuListData>
     private lateinit var foodCartListArray: ArrayList<CartFoodListData>
+    private lateinit var cartVendorArray: ArrayList<VendorIdData>
     private var context = this
-    private var selectedVendorId: String? = null
-    private var selectedFoodId: String? = null
+    private lateinit var selectedVendorId: String
+    private lateinit var selectedFoodId: String
     private var selectedFoodQty = 1
+    private lateinit var cartOrderListener: ValueEventListener
+    private lateinit var foodListener: ValueEventListener
+    private lateinit var wishlistListener: ValueEventListener
+    private lateinit var wishlistPushListener: ValueEventListener
+
+    private lateinit var vendorListener: ValueEventListener
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomerMenuDisplayBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        this.setTitle("Menu")
+        val actionbar = supportActionBar
+        actionbar!!.title = "Menu"
+        actionbar.setDisplayHomeAsUpEnabled(true)
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseReference = database?.reference!!.child("vendorProfile")
         databaseCustReference = database?.reference!!.child("customerProfile")
+
+        cartVendorArray = arrayListOf<VendorIdData>()
 
         selectedVendorId = intent.getStringExtra("vendorId")!!
         binding.rvFoodMenuList.layoutManager = LinearLayoutManager(this)
@@ -60,14 +75,115 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
         //val foodReference = databaseReference?.child(user?.uid!!)?.child("foodItem")
         loadVendorMenuData(selectedVendorId!!)
 
+        var userId = auth.currentUser?.uid!!
 
+        databaseFoodReference = database?.reference!!.child("vendorProfile")
+        databaseCustReference = database?.reference!!.child("customerProfile")
+
+        cartOrderReference= databaseCustReference?.child(userId)?.child("cartItem")
+        var cartVendorId : String? = null
+
+        cartOrderListener = cartOrderReference?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                        cartVendorArray = arrayListOf()
+                        for (foodCartListSnapshot in snapshot.children) {
+                            cartVendorId = foodCartListSnapshot.child("cartVendorId")
+                                .getValue(String::class.java)
+                        }
+                        val vendId = VendorIdData(cartVendorId)
+                        cartVendorArray.add(vendId)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                //TODO("Not yet implemented")
+            }
+        })
+
+        binding.cvMenuWishlist.setOnClickListener(){
+            actionWishlist(selectedVendorId!!)
+        }
 
     }
 
-    private fun loadVendorMenuData(vendorId: String) {
-        val vendorReference = databaseReference?.child(vendorId)
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
-        vendorReference?.addValueEventListener(object : ValueEventListener {
+    private fun actionWishlist(vendorId: String) {
+        val userId = auth.currentUser?.uid!!
+        wishlistReference = databaseCustReference?.child(userId)?.child("wishlist")
+        wishlistPushReference = databaseCustReference?.child(userId)?.child("wishlist")?.push()
+
+        if(binding.imgMenuWishlist.drawable == null) {
+            wishlistPushReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    wishlistPushReference?.child("wishlistVendorId").setValue(vendorId)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    //TODO("Not yet implemented")
+                }
+            })
+
+            binding.imgMenuWishlist.setImageResource(R.drawable.wishlist)
+            Toast.makeText(this, "Wishlist Added", Toast.LENGTH_LONG).show()
+        }
+        else {
+            wishlistReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (wishlistVendorSnapshot in snapshot.children) {
+                            val wishListId = wishlistVendorSnapshot.key
+                            val wishVendorId = wishlistVendorSnapshot.child("wishlistVendorId").getValue(String::class.java)
+
+                            if(vendorId == wishVendorId){
+                                wishlistReference?.child(wishListId!!).removeValue()
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    //TODO("Not yet implemented")
+
+                }
+            })
+
+            binding.imgMenuWishlist.setImageDrawable(null)
+            Toast.makeText(this, "Wishlist Removed", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun loadVendorMenuData(vendorId: String) {
+        val userId = auth.currentUser?.uid!!
+        wishlistReference = databaseCustReference?.child(userId)?.child("wishlist")
+
+        wishlistReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (wishlistVendorSnapshot in snapshot.children) {
+                        val wishListId = wishlistVendorSnapshot.key
+                        val wishVendorId = wishlistVendorSnapshot.child("wishlistVendorId").getValue(String::class.java)
+
+                        if(vendorId == wishVendorId){
+                            binding.imgMenuWishlist.setImageResource(R.drawable.wishlist)
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                //TODO("Not yet implemented")
+
+            }
+        })
+
+
+        vendorReference = databaseReference?.child(vendorId)
+
+        vendorListener = vendorReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 var image: Bitmap? = null
@@ -76,7 +192,7 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
                 executor.execute {
                     val imgURL = snapshot.child("ImageUri").value.toString()
 
-                    // get the image and post it in the ImageView
+                    //get the image and post it in the ImageView
                     try {
                         val `in` = java.net.URL(imgURL).openStream()
                         image = BitmapFactory.decodeStream(`in`)
@@ -88,18 +204,28 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
                         e.printStackTrace()
                     }
                 }
+
+                val rentalCode = snapshot.child("Rental Code").value.toString().split("-")
+                val shopLocation = rentalCode[0]
+                val shopCode = rentalCode[1]
+
+                binding.tvCanteenLocation.setText(shopLocation.uppercase(Locale.getDefault()) + " Canteen \n" + shopLocation[0].uppercase(Locale.getDefault()) + "-$shopCode")
+
                 binding.tvMerchantNameMenu.setText(snapshot.child("Merchant Name").value.toString())
                 binding.tvPhoneNoMenu.setText(snapshot.child("Phone Number").value.toString())
 
+                val vendorRate = snapshot.child("Rate Average").value.toString().toFloatOrNull()
+                if(vendorRate != null)
+                    binding.vendorAvgRateMenu.rating = vendorRate
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
         })
 
-        val foodReference = databaseReference?.child(vendorId)?.child("foodItem")
-        foodReference?.addValueEventListener(object : ValueEventListener {
+        foodReference = databaseReference?.child(vendorId)?.child("foodItem")
+        foodListener = foodReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     foodMenuListArray = arrayListOf()
@@ -120,7 +246,7 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
 
             }
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                //TODO("Not yet implemented")
             }
         })
     }
@@ -130,26 +256,6 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
         dialogBuilder.setView(bindingAddToCart.root)
         val dialog = dialogBuilder.create()
         dialog.show()
-
-        bindingAddToCart.cvBtnMinus.setOnClickListener(){
-            if( selectedFoodQty > 1){
-                selectedFoodQty -= 1
-                bindingAddToCart.tvSelectedFoodQuantity.text = selectedFoodQty.toString()
-            }
-            else {
-                selectedFoodQty -= 1
-                dialog.cancel()
-            }
-        }
-        bindingAddToCart.cvBtnPlus.setOnClickListener(){
-            selectedFoodQty += 1
-            bindingAddToCart.tvSelectedFoodQuantity.text = selectedFoodQty.toString()
-        }
-
-        bindingAddToCart.btnAddFoodToCart.setOnClickListener(){
-            addFoodToCart()
-            dialog.cancel()
-        }
 
         val selectedFood = foodMenuListArray[position]
         selectedFoodQty = 1
@@ -172,55 +278,120 @@ class CustomerMenuDisplayActivity : AppCompatActivity(), FoodMenuListAdapter.onI
                 e.printStackTrace()
             }
         }
-        selectedFoodId = selectedFood.foodId
+        selectedFoodId = selectedFood.foodId!!
         bindingAddToCart.tvSelectedFoodQuantity.text = selectedFoodQty.toString()
         bindingAddToCart.tvSelectedFoodName.text = selectedFood.foodName
         bindingAddToCart.tvSelectedFoodPrice.text = "RM " + selectedFood.foodPrice
 
+        bindingAddToCart.cvBtnMinus.setOnClickListener(){
+            if( selectedFoodQty > 1){
+                selectedFoodQty -= 1
+                bindingAddToCart.tvSelectedFoodQuantity.text = selectedFoodQty.toString()
+            }
+            else {
+                selectedFoodQty -= 1
+                dialog.cancel()
+            }
+        }
+        bindingAddToCart.cvBtnPlus.setOnClickListener(){
+            selectedFoodQty += 1
+            bindingAddToCart.tvSelectedFoodQuantity.text = selectedFoodQty.toString()
+        }
+
+        bindingAddToCart.btnAddFoodToCart.setOnClickListener(){
+            //checkCartVendor()
+            checkVendor()
+            dialog.cancel()
+        }
+
     }
 
-    private fun addFoodToCart() {
-        if(auth.currentUser != null)
-        {
-            var userId = auth.currentUser?.uid!!
-            var vendorId = selectedVendorId
-            var foodId = selectedFoodId
-            var foodImage : String?
-            var foodName : String?
-            var foodPrice : String?
-            var foodQty : String?  = selectedFoodQty.toString()
+    private fun checkVendor(){
+        var userId = auth.currentUser?.uid!!
+        var vendorId = selectedVendorId
 
-            databaseFoodReference = database?.reference!!.child("vendorProfile")
+        if(cartVendorArray.size == 0){
+            addToCart()
+        }
+        else if(cartVendorArray.size == 1) {
+            for(checkId in cartVendorArray){
+                if(checkId.vendorId == vendorId){
+                    addToCart()
+                } else {
+
+                    Toast.makeText(this, "", Toast.LENGTH_LONG).show()
+                    AlertDialog.Builder(this)
+                        .setTitle("Cart existed in different shop")
+                        .setMessage("Do you want to REMOVE cart and ADD this instead?")
+                        .setPositiveButton("Yes"){
+                                _, _->
+
+                            databaseCustReference?.child(userId)?.child("cartItem")?.removeValue()
+                            cartVendorArray.clear()
+                            addToCart()
+
+                        }
+                        .setNegativeButton("No"){
+                                _, _->
+                        }
+                        .create()
+                        .show()
+
+
+                }
+            }
+        }
+
+    }
+
+    private fun addToCart(){
+        var vendorId = selectedVendorId
+
+
+            var userId = auth.currentUser?.uid!!
+            var foodId = selectedFoodId
+            var foodImage: String?
+            var foodName: String?
+            var foodPrice: String?
+            var foodQty: String? = selectedFoodQty.toString()
 
             val key = database!!.getReference("customerProfile").push().key
 
-            val currentUserDb = databaseCustReference?.child((userId))?.child("cartItem")?.child(key!!)
-            val foodReference = databaseFoodReference?.child(vendorId.toString())?.child("foodItem")?.child(foodId.toString())
-            foodReference?.addValueEventListener(object : ValueEventListener {
+            cartReference = databaseCustReference?.child((userId))?.child("cartItem")?.child(key!!)
+            foodReference = databaseFoodReference?.child(vendorId.toString())?.child("foodItem")
+                    ?.child(foodId.toString())
+            foodReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
+                    if (snapshot.exists()) {
+
                         foodImage = snapshot.child("ImageUri").getValue(String::class.java)
                         foodName = snapshot.child("itemName").getValue(String::class.java)
                         foodPrice = snapshot.child("itemPrice").getValue(String::class.java)
 
-                        //currentUserDb?.setValue(CartFoodListData(vendorId, foodId, foodImage, foodName, foodPrice, foodQty))
-                        currentUserDb?.child("ImageUri")?.setValue(foodImage)
-                        currentUserDb?.child("cartVendorId")?.setValue(vendorId)
-                        currentUserDb?.child("cartFoodId")?.setValue(foodId)
-                        currentUserDb?.child("cartFoodName")?.setValue(foodName)
-                        currentUserDb?.child("cartFoodPrice")?.setValue(foodPrice)
-                        currentUserDb?.child("cartFoodQty")?.setValue(foodQty)
+                        cartReference?.child("ImageUri")?.setValue(foodImage)
+                        cartReference?.child("cartVendorId")?.setValue(vendorId)
+                        cartReference?.child("cartFoodId")?.setValue(foodId)
+                        cartReference?.child("cartFoodName")?.setValue(foodName)
+                        cartReference?.child("cartFoodPrice")?.setValue(foodPrice)
+                        cartReference?.child("cartFoodQty")?.setValue(foodQty)
+                        cartReference?.child("cartId")?.setValue(key)
 
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    //TODO("Not yet implemented")
                 }
             })
             Toast.makeText(this, "Food Added", Toast.LENGTH_LONG).show()
-        }
-        else
-            Toast.makeText(this, "Food id Error", Toast.LENGTH_LONG).show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        cartOrderListener?.let { cartOrderReference!!.removeEventListener(it) }
+        //foodListener?.let { foodReference!!.removeEventListener(it) }
+        //wishlistListener?.let { wishlistReference!!.removeEventListener(it) }
+        //wishlistPushListener?.let { wishlistPushReference!!.removeEventListener(it) }
+        vendorListener?.let { vendorReference!!.removeEventListener(it) }
+    }
 }
