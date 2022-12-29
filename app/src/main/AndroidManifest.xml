@@ -68,7 +68,7 @@
             android:name=".CustomerCartActivity"
             android:exported="false" />
         <activity
-            android:name=".VendorLoginActivity"
+            android:name=".CustomerLoginActivity"
             android:exported="false" />
         <activity
             android:name=".VendorProfileActivity"

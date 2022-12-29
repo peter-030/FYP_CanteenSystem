@@ -112,6 +112,11 @@ class VendorLoginActivity : AppCompatActivity() {
         {
             startActivity(Intent(this@VendorLoginActivity,VendorForgetPasswordActivity::class.java))
         }
+
+        binding.btnSwitchToCustomer.setOnClickListener()
+        {
+            startActivity(Intent(this@VendorLoginActivity,CustomerLoginActivity::class.java))
+        }
     }
 
     private fun loginUser(email: String, psw: String) {

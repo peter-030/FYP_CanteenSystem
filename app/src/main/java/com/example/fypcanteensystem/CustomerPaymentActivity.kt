@@ -65,6 +65,7 @@ class CustomerPaymentActivity : AppCompatActivity() {
     private var paymentMethod: String? = null
     private var promoCodeRedeemStatus: String? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCustomerPaymentBinding.inflate(layoutInflater)
@@ -271,6 +272,7 @@ class CustomerPaymentActivity : AppCompatActivity() {
 
     }
 
+
     private fun enterPromoCode() {
         bindingPromoCode = EnterPromoCodePopupBinding.inflate(layoutInflater)
         val dialogBuilder = AlertDialog.Builder(this)
@@ -306,12 +308,11 @@ class CustomerPaymentActivity : AppCompatActivity() {
 
                 for (pCode in promoValidateArray) {
 
-                    val currentDate =
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            LocalDate.parse(cDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
-                        } else {
-                            TODO("VERSION.SDK_INT < O")
-                        }
+                    val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        LocalDate.parse(cDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                    } else {
+                        TODO("VERSION.SDK_INT < O")
+                    }
                     val startDate =
                         LocalDate.parse(
                             pCode.promoCodeStartDate,
