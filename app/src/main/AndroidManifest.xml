@@ -38,6 +38,39 @@
             android:name=".VendorMenuActivity"
             android:exported="false" />
         <activity
+            android:name=".CustomerPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerMenuDisplayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerForgetPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodOrderingModuleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerWishlistActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VendorLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".VendorProfileActivity"
             android:exported="false" />
         <activity

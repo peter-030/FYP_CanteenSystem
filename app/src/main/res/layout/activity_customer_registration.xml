@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VendorRegistrationActivity">
-
+    tools:context=".CustomerRegistrationActivity">
 
     <TextView android:id="@+id/titleTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Let's Get Started. \nCreate your own digital merchant now!\n* you will get a RM1000 E-wallet Balance"
+        android:text="Let's Get Started. \nJoin us now."
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +120,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/rentalCodeContainer"
+        android:id="@+id/studentIdContainer"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_marginHorizontal="20dp"
         app:helperText=""
@@ -135,48 +134,24 @@
         app:layout_constraintTop_toBottomOf="@+id/phoneContainer">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rentalCodeEditText"
+            android:id="@+id/studentIdEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:lines="1"
-            android:inputType="textPersonName"
-            android:hint="Rental Code (West/East-XXXX)"/>
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/merchantNameContainer"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_marginHorizontal="20dp"
-        app:helperText=""
-        app:helperTextTextColor="@android:color/holo_red_dark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentIdContainer">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/merchantNameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:lines="1"
+            android:hint="Student Id (eg. 20WMR05253)"
             android:inputType="text"
-            android:hint="@string/merchant_name"/>
+            android:lines="1" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/vendorSignUpButton"
+        android:id="@+id/custSignUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/sign_up"
-        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/merchantNameContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/studentIdContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -55,4 +56,11 @@ dependencies {
 
     implementation 'androidx.biometric:biometric:1.1.0'
     implementation 'com.itextpdf:itextg:5.5.10'
+
+    //Glide Lib
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //piechart
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
 }
