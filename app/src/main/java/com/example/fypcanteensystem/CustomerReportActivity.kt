@@ -195,7 +195,8 @@ class CustomerReportActivity : AppCompatActivity(), OrderListAdapter.onItemClick
         bindingMonthlyPiechartReport.pieChart.animateY(1000)
 
         val legend : Legend = bindingMonthlyPiechartReport.pieChart.legend
-        legend.position = Legend.LegendPosition.BELOW_CHART_RIGHT
+        //legend.position = Legend.LegendPosition.BELOW_CHART_RIGHT
+        legend.position = Legend.LegendPosition.LEFT_OF_CHART
         //legend.form = Legend.LegendForm.
         legend.textColor = resources.getColor(R.color.black)
         legend.textSize = 15f

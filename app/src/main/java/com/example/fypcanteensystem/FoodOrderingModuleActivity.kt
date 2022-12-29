@@ -21,8 +21,8 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
     private lateinit var binding: ActivityFoodOrderingModuleBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
-    private lateinit var databaseVendReference: DatabaseReference
-    private lateinit var databaseCustReference: DatabaseReference
+    private lateinit var databaseVendFOMReference: DatabaseReference
+    private lateinit var databaseCustFOMReference: DatabaseReference
     private lateinit var orderSoundReference: DatabaseReference
     private lateinit var orderCancelReference: DatabaseReference
 
@@ -37,9 +37,7 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
         binding = ActivityFoodOrderingModuleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val actionbar = supportActionBar
-        actionbar!!.title = "Peter & Jx Food"
-        actionbar.setDisplayHomeAsUpEnabled(true)
+        this.setTitle("Peter & Jx Food")
 
         binding.rvVendorsList.layoutManager = LinearLayoutManager(this)
         binding.rvVendorsList.setHasFixedSize(true)
@@ -112,10 +110,10 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        databaseCustReference = database?.reference!!.child("customerProfile")
+        databaseCustFOMReference = database?.reference!!.child("customerProfile")
         val userId = auth.currentUser?.uid!!
 
-        orderSoundReference = databaseCustReference.child(userId)?.child("orderItem")
+        orderSoundReference = databaseCustFOMReference.child(userId)?.child("orderItem")
         orderSoundReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -141,10 +139,6 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
 
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
 
     //custom receive new order sound notification
     private fun playReceiveOrderTune(soundType: String, orderId: String) {
@@ -169,11 +163,11 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
     private fun isNotice(orderId: String, notice: String) {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        databaseCustReference = database?.reference!!.child("customerProfile")
+        databaseCustFOMReference = database?.reference!!.child("customerProfile")
         val userId = auth.currentUser?.uid!!
 
         orderCancelReference =
-            databaseCustReference.child(userId)?.child("orderItem").child(orderId)
+            databaseCustFOMReference.child(userId)?.child("orderItem").child(orderId)
         orderCancelReference?.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -189,8 +183,8 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
 
     private fun readVendorListData() {
         database = FirebaseDatabase.getInstance()
-        databaseVendReference = database?.reference!!.child("vendorProfile")
-        databaseVendReference?.addValueEventListener(object : ValueEventListener {
+        databaseVendFOMReference = database?.reference!!.child("vendorProfile")
+        databaseVendFOMReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     vendorListArray = arrayListOf()

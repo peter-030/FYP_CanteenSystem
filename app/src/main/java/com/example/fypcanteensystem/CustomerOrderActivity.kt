@@ -147,8 +147,7 @@ class CustomerOrderActivity : AppCompatActivity(), OrderListAdapter.onItemClickL
                 ?.child("orderFoodItem")
         //orderFoodReference = database2?.reference!!.child("customerProfile").child(userId)?.child("orderItem")?.child(orderId)?.child("orderFoodItem")
 
-        orderFoodListener =
-            orderFoodReference?.addValueEventListener(object : ValueEventListener {
+            orderFoodReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         orderFoodListArray = arrayListOf()
@@ -278,7 +277,7 @@ class CustomerOrderActivity : AppCompatActivity(), OrderListAdapter.onItemClickL
 
     override fun onDestroy() {
         super.onDestroy()
-        //orderListener?.let { orderReference!!.removeEventListener(it)}
+        orderListener?.let { orderReference!!.removeEventListener(it)}
         //orderFoodListener?.let { orderFoodReference!!.removeEventListener(it)}
     }
 }
