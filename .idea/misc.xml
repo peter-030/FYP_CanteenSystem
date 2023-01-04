@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/drawable/ic_delete.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/drawable/shape_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_customer_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_dashboard.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_ewallet.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_forget_password.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_order_receive.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_profile.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_promo_code.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_receive_order_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_registration.xml" value="0.264" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_report.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_sales_report.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/activity_vendor_stock_report.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/add_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/add_promocode.xml" value="0.264" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/dialog_ewallet_history.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/dialog_order_history.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/dialog_order_receive.xml" value="0.25" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/fragment_order_receive.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/list_ewallet_recharge.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/list_promocode.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/order_details_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/order_history_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/order_receive_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/recharge_ewallet.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/layout/update_status.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/menu/show_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/User/Desktop/FYP_project2/app/src/main/res/menu/show_order_menu.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14_PREVIEW" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>
