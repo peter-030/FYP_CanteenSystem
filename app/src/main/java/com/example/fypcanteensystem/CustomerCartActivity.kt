@@ -202,7 +202,7 @@ class CustomerCartActivity : AppCompatActivity(), CartFoodListAdapter.onItemClic
                     removeCartDialog(position)
 
                     //cartFoodQty -= 1
-                    //dialog.cancel()
+                    dialog.cancel()
                 }
             }
         }

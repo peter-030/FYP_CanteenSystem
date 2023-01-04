@@ -24,8 +24,8 @@ class CustomerProfileActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityCustomerProfileBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference : DatabaseReference
-    private lateinit var userReference : DatabaseReference
+    private lateinit var databaseCustReference : DatabaseReference
+    private lateinit var userProfileReference : DatabaseReference
 
     private lateinit var database : FirebaseDatabase
     private lateinit var ImageUri : Uri
@@ -45,7 +45,7 @@ class CustomerProfileActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        databaseReference = database?.reference!!.child("customerProfile")
+        databaseCustReference = database?.reference!!.child("customerProfile")
 
         loadCustomerProfile()
 
@@ -148,7 +148,7 @@ class CustomerProfileActivity : AppCompatActivity() {
         val storageReference = FirebaseStorage.getInstance().getReference("images/${filename}.png")
 
         val currentUser = auth.currentUser
-        val currentUserDb = databaseReference?.child((currentUser?.uid!!))
+        val currentUserDb = databaseCustReference?.child((currentUser?.uid!!))
 
         //got error if no input image, click update btn
         if(::ImageUri.isInitialized)
@@ -178,11 +178,10 @@ class CustomerProfileActivity : AppCompatActivity() {
 
     private fun loadCustomerProfile() {
         val user = auth.currentUser
-        userReference = databaseReference?.child(user?.uid!!)
+        userProfileReference = databaseCustReference?.child(user?.uid!!)
 
-        userListener = userReference?.addValueEventListener(object : ValueEventListener {
+        userProfileReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
 
                 var image: Bitmap? = null
                 val executor = Executors.newSingleThreadExecutor()
@@ -204,7 +203,7 @@ class CustomerProfileActivity : AppCompatActivity() {
                 }
 
                 if(user==null){
-                    userReference?.removeEventListener(this)
+                    userProfileReference?.removeEventListener(this)
                 }
 
                 //load user email,username,phoneNumber

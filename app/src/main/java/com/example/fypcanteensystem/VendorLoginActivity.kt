@@ -72,10 +72,10 @@ class VendorLoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         //keep user sign in, they will only log out when they click log out button
-        if(auth.currentUser!=null){
-            startActivity(Intent(this@VendorLoginActivity,VendorDashboardActivity::class.java))
-            finish()
-        }
+//        if(auth.currentUser!=null){
+//            startActivity(Intent(this@VendorLoginActivity,VendorDashboardActivity::class.java))
+//            finish()
+//        }
 
         binding.btnLogin.setOnClickListener()
         {

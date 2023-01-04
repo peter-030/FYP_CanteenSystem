@@ -19,7 +19,7 @@ import java.util.ArrayList
 class CustomerWishlistActivity : AppCompatActivity(), VendorsListAdapter.onItemClickListener {
     private lateinit var binding: ActivityCustomerWishlistBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseVendReference: DatabaseReference
+    private lateinit var databaseVendWishReference: DatabaseReference
     private lateinit var databaseCustReference: DatabaseReference
     private lateinit var wishRefrence: DatabaseReference
     private lateinit var wishlistDeleteReference: DatabaseReference
@@ -45,7 +45,7 @@ class CustomerWishlistActivity : AppCompatActivity(), VendorsListAdapter.onItemC
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
         databaseCustReference = database?.reference!!.child("customerProfile")
-        databaseVendReference = database?.reference!!.child("vendorProfile")
+        databaseVendWishReference = database?.reference!!.child("vendorProfile")
 
         binding.rvWishlistVendor.layoutManager = LinearLayoutManager(this)
         binding.rvWishlistVendor.setHasFixedSize(true)
@@ -75,7 +75,7 @@ class CustomerWishlistActivity : AppCompatActivity(), VendorsListAdapter.onItemC
     private fun loadWishlistData() {
         val userId = auth.currentUser?.uid!!
 
-        vendListener = databaseVendReference?.addValueEventListener(object : ValueEventListener {
+        vendListener = databaseVendWishReference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     vendorListArray = arrayListOf()
@@ -185,7 +185,7 @@ class CustomerWishlistActivity : AppCompatActivity(), VendorsListAdapter.onItemC
     }
     override fun onDestroy() {
         super.onDestroy()
-        vendListener?.let { databaseVendReference!!.removeEventListener(it)}
+        vendListener?.let { databaseVendWishReference!!.removeEventListener(it)}
         wishListener?.let { wishRefrence!!.removeEventListener(it)}
         //wishVendListener?.let { databaseVendReference!!.removeEventListener(it)}
         //wishlistDeleteListener?.let { wishlistDeleteReference!!.removeEventListener(it)}

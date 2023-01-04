@@ -38,7 +38,7 @@ class CustomerPaymentActivity : AppCompatActivity() {
     private lateinit var addOrderReference: DatabaseReference
     private lateinit var cartItemReference: DatabaseReference
     private lateinit var promoCodeReference: DatabaseReference
-    private lateinit var vendorReference: DatabaseReference
+    private lateinit var vendorNameReference: DatabaseReference
     private lateinit var vendEWReference: DatabaseReference
     private lateinit var custEWReference: DatabaseReference
 
@@ -188,8 +188,7 @@ class CustomerPaymentActivity : AppCompatActivity() {
 
         val userId = auth.currentUser?.uid!!
         paymentFoodReference = databaseCustReference?.child(userId)?.child("cartItem")
-        paymentFoodListener =
-            paymentFoodReference?.addValueEventListener(object : ValueEventListener {
+        paymentFoodReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         paymentFoodListArray = arrayListOf()
@@ -244,8 +243,8 @@ class CustomerPaymentActivity : AppCompatActivity() {
 
                     if (vendorId != null) {
                         databaseVendReference = database?.reference!!.child("vendorProfile")
-                        vendorReference = databaseVendReference?.child(vendorId.toString())
-                        vendorReference?.addListenerForSingleValueEvent(object : ValueEventListener {
+                        vendorNameReference = databaseVendReference?.child(vendorId.toString())
+                        vendorNameReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if (snapshot.exists()) {
 
@@ -630,8 +629,8 @@ class CustomerPaymentActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        paymentFoodListener?.let { paymentFoodReference!!.removeEventListener(it) }
-        //addOrderListener?.let { addOrderReference!!.removeEventListener(it)}
+        //paymentFoodListener?.let { paymentFoodReference!!.removeEventListener(it) }
+        addOrderListener?.let { addOrderReference!!.removeEventListener(it)}
         //cartItemListener?.let { cartItemReference!!.removeEventListener(it)}
         //promoCodeListener?.let { promoCodeReference!!.removeEventListener(it)}
         //vendorListener?.let { vendorReference!!.removeEventListener(it) }
