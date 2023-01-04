@@ -61,6 +61,8 @@ class VendorSalesReportActivity : AppCompatActivity() {
         return true
     }
 
+    fun Double.format(digits: Int) = "%.${digits}f".format(this)
+
     private fun addTableChild(){
         var date : String
         calendar = Calendar.getInstance()
@@ -160,7 +162,7 @@ class VendorSalesReportActivity : AppCompatActivity() {
                             tv3.setText(itemClassMap.get(key)?.itemPrice)
                             tv4.setText(qty.toString())
                             totalPrice = itemClassMap.get(key)?.itemPrice!!.toDouble() * qty!!.toDouble()
-                            tv5.setText(totalPrice.toString())
+                            tv5.setText(totalPrice.format(2).toString())
                             /* Create a new row to be added. */
                             val tr = TableRow(applicationContext)
 

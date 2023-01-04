@@ -117,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:text="Directly Login -->"
+        android:text="Directly Login ->"
         android:textColor="#000000"
         android:textSize="14sp"
         android:textStyle="bold"

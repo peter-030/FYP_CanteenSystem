@@ -239,6 +239,8 @@ class VendorEwalletActivity : AppCompatActivity(),EwalletAdapter.onItemClickList
         })
     }
 
+    fun Double.format(digits: Int) = "%.${digits}f".format(this)
+
     private fun addInfo(){
         val inflter = LayoutInflater.from(this)
         val v = inflter.inflate(R.layout.recharge_ewallet,null)
@@ -369,7 +371,7 @@ class VendorEwalletActivity : AppCompatActivity(),EwalletAdapter.onItemClickList
 
                                                     //minus vendor balance here after recharge for students and add up student balance
                                                     val getAmount = amount.toDouble()
-                                                    val finalBalance = getCurrentBalance.toDouble().minus(getAmount).toString()
+                                                    val finalBalance = getCurrentBalance.toDouble().minus(getAmount).format(2).toString()
                                                     findBalanceDb?.setValue(finalBalance)
 
                                                     val studFinalBalance = getStudBalance.toDouble() + amount.toDouble()
