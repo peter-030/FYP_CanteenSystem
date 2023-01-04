@@ -304,7 +304,8 @@ class CustomerPaymentActivity : AppCompatActivity() {
 
         if (vendorId != null) {
             if (paymentTotalPrice != null && paymentTotalPrice > 0) {
-
+                var redeemStatus = 1
+                var minSpend = ""
                 for (pCode in promoValidateArray) {
 
                     val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -324,8 +325,8 @@ class CustomerPaymentActivity : AppCompatActivity() {
                         )
 
                     if (promoCode == pCode.promoCodeName) {
-                        if (pCode.promoCodeStatus.equals("shelf") && currentDate.isAfter(startDate)
-                            && currentDate.isBefore(endDate) && pCode.promoCodeQuantity?.toInt()!! > 0
+                        if (pCode.promoCodeStatus.equals("shelf") && (currentDate.isAfter(startDate)||currentDate.isEqual(startDate))
+                            && (currentDate.isBefore(endDate)||currentDate.isEqual(endDate)) && pCode.promoCodeQuantity?.toInt()!! > 0
                         ) {
                             if (paymentTotalPrice > pCode.promoCodeMinSpend!!.toDouble()) {
                                 discountAmount = pCode.promoCodeDiscountPrice!!.toDouble()
@@ -371,7 +372,7 @@ class CustomerPaymentActivity : AppCompatActivity() {
                                         pCode.promoCodeQuantity
                                     )
                                 )
-                                Toast.makeText(this,"Promo Code Redeem Successfully",Toast.LENGTH_SHORT).show()
+                                redeemStatus = 4
 
                                 break
                             } else {
@@ -380,24 +381,43 @@ class CustomerPaymentActivity : AppCompatActivity() {
                                     binding.btnEnterPromoCode.setText(
                                     "Minimum spent is RM ${pCode.promoCodeMinSpend!!.format(2)}."
                                 )
-                                 */
-                                Toast.makeText(this,"Minimum spent is RM ${pCode.promoCodeMinSpend!!.format(2)}.\nPlease Try Again",Toast.LENGTH_SHORT).show()
+                                */
+                                minSpend = "${pCode.promoCodeMinSpend!!.format(2)}"
+                                redeemStatus = 3
 
                                 break
                             }
                         } else {
                             //promoCodeRedeemStatus == "Promo Code is not available"
                             //binding.btnEnterPromoCode.setText("Promo Code is not available.")
-                            Toast.makeText(this,"Promo Code is not available.\nPlease Try Again",Toast.LENGTH_SHORT).show()
+                            redeemStatus = 2
                             break
                         }
                     } else {
                         //promoCodeRedeemStatus == "Invalid Promo Code"
                         //binding.btnEnterPromoCode.setText("Invalid Promo Code.")
-                        Toast.makeText(this,"Invalid Promo Code.\nPlease Try Again",Toast.LENGTH_SHORT).show()
+                        redeemStatus = 1
                     }
 
 
+
+                }
+                when (redeemStatus) {
+                    1 -> {
+                        Toast.makeText(this,"Invalid Promo Code.\nPlease Try Again",Toast.LENGTH_SHORT).show()
+                    }
+                    2 -> {
+                        Toast.makeText(this,"Promo Code is not available.\nPlease Try Again",Toast.LENGTH_SHORT).show()
+                    }
+                    3 -> {
+                        Toast.makeText(this,"Minimum spent is RM ${minSpend}.\nPlease Try Again",Toast.LENGTH_SHORT).show()
+                    }
+                    4 -> {
+                        Toast.makeText(this,"Promo Code Redeem Successfully",Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        Toast.makeText(this,"Promo Code Error",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
@@ -460,29 +480,29 @@ class CustomerPaymentActivity : AppCompatActivity() {
         val key = database!!.getReference("customerProfile").child("orderItem").push().key
         var orderNote = binding.etOrderNote.text.toString()
 
-        addOrderReference = databaseCustReference?.child(userId)?.child("orderItem")?.child(key!!)
-        addOrderListener = addOrderReference?.addValueEventListener(object : ValueEventListener {
+        addOrderReference = databaseCustReference?.child(userId)
+        addOrderReference?.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    addOrderReference?.child("orderVendorId")?.setValue(vendorId)
-                    addOrderReference?.child("orderVendorName")?.setValue(merchantName)
-                    addOrderReference?.child("orderStatus")?.setValue("Pending")
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderVendorId")?.setValue(vendorId)
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderVendorName")?.setValue(merchantName)
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderStatus")?.setValue("Pending")
 
-                    addOrderReference?.child("orderNote")?.setValue(orderNote)
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderNote")?.setValue(orderNote)
                     //orderReference?.child("orderDate")?.setValue(currentDate)
                     //orderReference?.child("orderTime")?.setValue(currentTime)
-                    addOrderReference?.child("orderDateTime")?.setValue(currentDateTime)
-                    addOrderReference?.child("orderSubPrice")
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderDateTime")?.setValue(currentDateTime)
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderSubPrice")
                         ?.setValue(paymentTotalPrice.format(2))
-                    addOrderReference?.child("orderDiscountPrice")
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderDiscountPrice")
                         ?.setValue(discountAmount.format(2))
-                    addOrderReference?.child("orderTotalPrice")
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderTotalPrice")
                         ?.setValue(totalPriceAfterPromo.format(2))
-                    addOrderReference?.child("orderTotalQty")
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderTotalQty")
                         ?.setValue(totalQty.toString())
 
-                    addOrderReference?.child("orderRating")?.setValue("")
-                    addOrderReference?.child("orderPaymentMethod")?.setValue(paymentMethod)
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderRating")?.setValue("")
+                    addOrderReference?.child("orderItem")?.child(key!!).child("orderPaymentMethod")?.setValue(paymentMethod)
 
                     if (paymentMethod == "PayByE-Wallet") {
 
@@ -563,15 +583,15 @@ class CustomerPaymentActivity : AppCompatActivity() {
                         val cartFoodImage =
                             foodCartListSnapshot.child("ImageUri").getValue(String::class.java)
 
-                        addOrderReference?.child("orderFoodItem")?.child(keyOrder!!)
+                        addOrderReference?.child("orderItem")?.child(key!!).child("orderFoodItem")?.child(keyOrder!!)
                             ?.child("orderFoodId")?.setValue(cartFoodId)
-                        addOrderReference?.child("orderFoodItem")?.child(keyOrder!!)
+                        addOrderReference?.child("orderItem")?.child(key!!).child("orderFoodItem")?.child(keyOrder!!)
                             ?.child("orderFoodName")?.setValue(cartFoodName)
-                        addOrderReference?.child("orderFoodItem")?.child(keyOrder!!)
+                        addOrderReference?.child("orderItem")?.child(key!!).child("orderFoodItem")?.child(keyOrder!!)
                             ?.child("orderFoodPrice")?.setValue(cartFoodPrice)
-                        addOrderReference?.child("orderFoodItem")?.child(keyOrder!!)
+                        addOrderReference?.child("orderItem")?.child(key!!).child("orderFoodItem")?.child(keyOrder!!)
                             ?.child("orderFoodQty")?.setValue(cartFoodQty)
-                        addOrderReference?.child("orderFoodItem")?.child(keyOrder!!)
+                        addOrderReference?.child("orderItem")?.child(key!!).child("orderFoodItem")?.child(keyOrder!!)
                             ?.child("ImageUri")?.setValue(cartFoodImage)
 
                     }
@@ -630,7 +650,7 @@ class CustomerPaymentActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         //paymentFoodListener?.let { paymentFoodReference!!.removeEventListener(it) }
-        addOrderListener?.let { addOrderReference!!.removeEventListener(it)}
+        //addOrderListener?.let { addOrderReference!!.removeEventListener(it)}
         //cartItemListener?.let { cartItemReference!!.removeEventListener(it)}
         //promoCodeListener?.let { promoCodeReference!!.removeEventListener(it)}
         //vendorListener?.let { vendorReference!!.removeEventListener(it) }

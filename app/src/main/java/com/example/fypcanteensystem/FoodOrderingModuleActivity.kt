@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fypcanteensystem.databinding.ActivityFoodOrderingModuleBinding
 import com.example.fypcanteensystem.adapter.VendorsListAdapter
@@ -147,9 +148,11 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
             val track: MediaPlayer
             if (soundType == "Completed") {
                 track = MediaPlayer.create(applicationContext, R.raw.notice)
+                showNoticeMsg(orderId, "Waiting Rate")
                 isNotice(orderId, "Waiting Rate")
             } else{
                 track = MediaPlayer.create(applicationContext, R.raw.error)
+                showNoticeMsg(orderId, "Cancelled")
                 isNotice(orderId, "Cancelled")
             }
             track?.start()
@@ -159,6 +162,44 @@ class FoodOrderingModuleActivity : AppCompatActivity(), VendorsListAdapter.onIte
         }
 
     }
+
+    private fun showNoticeMsg(orderId: String, notice: String){
+        if(notice == "Waiting Rate"){
+
+            AlertDialog.Builder(this)
+                .setTitle("Id: ${orderId} \n You order have been completed.")
+                .setPositiveButton("Yes") { dialog, _ ->
+
+                    startActivity(Intent(this, CustomerOrderActivity::class.java))
+                    dialog.cancel()
+
+                }
+                .setNegativeButton("Dismiss") { dialog, _ ->
+                    dialog.cancel()
+                }
+                .create()
+                .show()
+
+        }
+        else{
+
+            AlertDialog.Builder(this)
+                .setTitle("Id: ${orderId} \n You order have been cancelled.")
+                .setPositiveButton("Yes") { dialog, _ ->
+
+                    startActivity(Intent(this, CustomerReportActivity::class.java))
+                    dialog.cancel()
+
+                }
+                .setNegativeButton("Dismiss") { dialog, _ ->
+                    dialog.cancel()
+                }
+                .create()
+                .show()
+        }
+
+    }
+
 
     private fun isNotice(orderId: String, notice: String) {
         auth = FirebaseAuth.getInstance()

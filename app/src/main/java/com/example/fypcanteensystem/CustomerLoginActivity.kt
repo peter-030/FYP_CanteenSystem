@@ -99,6 +99,10 @@ class CustomerLoginActivity : AppCompatActivity() {
             loginUser(binding.emailEditText.text.toString(),binding.passwordEditText.text.toString())
         }
 
+        binding.btnFingerPrintLogin.setOnClickListener{
+            biometricPrompt.authenticate(promptInfo)
+        }
+
 
         binding.registerText.setOnClickListener(){
             startActivity(Intent(this@CustomerLoginActivity,CustomerRegistrationActivity::class.java))
