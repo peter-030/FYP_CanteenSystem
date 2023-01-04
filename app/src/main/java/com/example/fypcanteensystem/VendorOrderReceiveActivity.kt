@@ -233,7 +233,7 @@ class VendorOrderReceiveActivity : AppCompatActivity(),OrderReceiveAdapter.onIte
                                     val orderData1st = OrderReceiveData(orderId,orderDateTime,name,orderStatus,noOfItems,img,orderPaymentMethod, userId)
                                     orderList.add(orderData1st)
                                     //break
-                                    if(bolNotify){
+                                    if(bolNotify && snap.child("orderStatus").getValue(String::class.java) == "Pending"){
                                         playReceiveOrderTune()
                                     }
 
@@ -485,7 +485,7 @@ class VendorOrderReceiveActivity : AppCompatActivity(),OrderReceiveAdapter.onIte
 
 
             if(curOrder.orderStatus.toString() == "Completed"){
-                databaseReference?.addValueEventListener(object : ValueEventListener {
+                databaseReference?.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
 
                         //load order details
